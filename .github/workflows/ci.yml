@@ -27,7 +27,7 @@ jobs:
         run: npm run lint
 
       - name: 🎨 Verificar formatação (Prettier)
-        run: npm run prettier:check || echo "⚠️ Rodar: npm run prettier:fix"
+        run: npm run prettier:check
 
       - name: 🧪 Rodar testes
         run: npm test --if-present
