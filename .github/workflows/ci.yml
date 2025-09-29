@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: 📦 Instalar dependências
+        run: npm install
+
+      - name: 🧹 Rodar Linter (ESLint)
+        run: npm run lint
+
+      - name: 🎨 Verificar formatação (Prettier)
+        run: npm run prettier:check || echo "⚠️ Rodar: npm run prettier:fix"
+
+      - name: 🧪 Rodar testes
+        run: npm test --if-present
+
+      - name: 🏗️ Build do projeto Next.js
+        run: npm run build
