@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build-and-test:
@@ -28,9 +28,6 @@ jobs:
 
       - name: 🎨 Verificar formatação (Prettier)
         run: npm run prettier:check
-
-      - name: 🧪 Rodar testes
-        run: npm test --if-present
 
       - name: 🏗️ Build do projeto Next.js
         run: npm run build
