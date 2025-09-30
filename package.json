@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "rm -f ./node_modules/@libsql/hrana-client/LICENSE && next build --turbopack",
     "start": "next start",
     "lint": "eslint",
     "prettier:check": "prettier --check .",
@@ -12,8 +12,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.15",
+    "bcryptjs": "^3.0.2",
     "jest": "^30.2.0",
     "next": "15.5.4",
+    "next-auth": "^4.24.11",
     "prettier": "^3.6.2",
     "react": "19.1.0",
     "react-dom": "19.1.0"

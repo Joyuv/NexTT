@@ -1,0 +1,18 @@
+import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
+import { createUser, getUserByEmail } from "@/lib/db";
+
+export const POST = async (req: Request) => {
+  const { email, senha } = await req.json();
+
+  const existing = await getUserByEmail(email);
+  if (existing) {
+    return NextResponse.json({ error: "Usuário já existe" }, { status: 400 });
+  }
+
+  const hashed = await bcrypt.hash(senha, 10);
+
+  await createUser(email, hashed);
+
+  return NextResponse.json({ message: "Usuário criado!" });
+};
