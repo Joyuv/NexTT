@@ -5,6 +5,9 @@ export default function Page() {
   return (
     <div className={styles.centra}>
       <H1>Em construção</H1>
+      <a className="pointer" href="/">
+        <H1>Voltar</H1>
+      </a>
     </div>
   );
 }
