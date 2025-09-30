@@ -1,4 +1,4 @@
-import { client } from "../route";
+import { client } from "@/lib/db";
 
 export const GET = async () => {
   await client.execute(`
@@ -6,7 +6,7 @@ export const GET = async () => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT UNIQUE,
       password TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      username TEXT,
     )
   `);
 

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { getUserByEmail } from "@/app/api/db/route";
+import { getUserByEmail } from "@/lib/db";
 
 export const POST = async (req: Request) => {
   const { email, senha } = await req.json();
@@ -13,7 +13,7 @@ export const POST = async (req: Request) => {
     );
   }
 
-  const isValid = await bcrypt.compare(senha, user.senha);
+  const isValid = await bcrypt.compare(senha, String(user.password));
   if (!isValid) {
     return NextResponse.json({ error: "Senha incorreta" }, { status: 401 });
   }

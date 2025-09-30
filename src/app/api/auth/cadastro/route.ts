@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { createUser, getUserByEmail } from "@/app/api/db/route";
+import { createUser, getUserByEmail } from "@/lib/db";
 
 export const POST = async (req: Request) => {
   const { email, senha } = await req.json();

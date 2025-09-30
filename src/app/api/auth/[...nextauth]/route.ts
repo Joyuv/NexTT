@@ -1,15 +1,20 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { getUserByEmail } from "@/app/api/db/route";
+import { getUserByEmail } from "@/lib/db";
 import bcrypt from "bcryptjs";
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
+      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text" },
-        senha: { label: "Password", type: "password" },
+        password: { label: "Password", type: "password" },
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "exemplo@gmail.com",
+        },
       },
       async authorize(credentials) {
         if (!credentials) return null;
@@ -17,20 +22,20 @@ export const authOptions = {
         const user = await getUserByEmail(credentials.email);
         if (!user) return null;
 
-        const isValid = await bcrypt.compare(credentials.senha, user.senha);
+        const isValid = await bcrypt.compare(
+          credentials.password,
+          String(user.password),
+        );
         if (!isValid) return null;
 
-        return { id: user.id, email: user.email };
+        return {
+          id: String(user.id),
+          nome: String(user.nome),
+          email: String(user.email),
+        };
       },
     }),
   ],
-  session: {
-    strategy: "jwt",
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-  pages: {
-    signIn: "/login", // rota de login personalizada (opcional)
-  },
 };
 
 const handler = NextAuth(authOptions);
