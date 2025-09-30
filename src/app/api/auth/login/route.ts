@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { getUserByEmail } from "@/app/api/db/route";
 
 export const POST = async (req: Request) => {
-  const { email, password } = await req.json();
+  const { email, senha } = await req.json();
 
   const user = await getUserByEmail(email);
   if (!user) {
@@ -13,7 +13,7 @@ export const POST = async (req: Request) => {
     );
   }
 
-  const isValid = await bcrypt.compare(password, user.password);
+  const isValid = await bcrypt.compare(senha, user.senha);
   if (!isValid) {
     return NextResponse.json({ error: "Senha incorreta" }, { status: 401 });
   }
