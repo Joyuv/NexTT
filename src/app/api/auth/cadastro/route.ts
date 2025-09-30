@@ -3,16 +3,16 @@ import bcrypt from "bcryptjs";
 import { createUser, getUserByEmail } from "@/lib/db";
 
 export const POST = async (req: Request) => {
-  const { email, senha } = await req.json();
+  const { username, email, password } = await req.json();
 
   const existing = await getUserByEmail(email);
   if (existing) {
     return NextResponse.json({ error: "Usuário já existe" }, { status: 400 });
   }
 
-  const hashed = await bcrypt.hash(senha, 10);
+  const hashed = await bcrypt.hash(password, 10);
 
-  await createUser(email, hashed);
+  await createUser(email, hashed, username);
 
   return NextResponse.json({ message: "Usuário criado!" });
 };

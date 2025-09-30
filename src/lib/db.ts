@@ -10,11 +10,15 @@ export const client = createClient({
 });
 
 // Funções auxiliares
-export async function createUser(email: string, senha: string) {
-  return client.execute("INSERT INTO users (email, senha) VALUES (?, ?)", [
-    email,
-    senha,
-  ]);
+export async function createUser(
+  email: string,
+  senha: string,
+  username: string,
+) {
+  return client.execute(
+    "INSERT INTO users (email, password, username) VALUES (?, ?, ?)",
+    [email, senha, username],
+  );
 }
 
 export async function getUserByEmail(email: string) {

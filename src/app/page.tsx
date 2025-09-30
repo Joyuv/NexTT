@@ -9,7 +9,11 @@ export default function Home() {
     const res = await fetch("/api/auth/cadastro", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email: "teste@ex.com", senha: "123456" }),
+      body: JSON.stringify({
+        email: "teste@ex.com",
+        password: "123456",
+        username: "Fulano",
+      }),
     });
     const data = await res.json();
     console.log(data);
@@ -18,7 +22,7 @@ export default function Home() {
   const handleLogin = async () => {
     const res = await signIn("credentials", {
       email: "teste@ex.com",
-      senha: "123456",
+      password: "123456",
       redirect: false, // não redireciona automaticamente
     });
 
