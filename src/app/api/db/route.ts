@@ -5,14 +5,6 @@ export const client = createClient({
   authToken: process.env.TURSO_AUTH_TOKEN,
 });
 
-await client.execute(`
-  CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT UNIQUE,
-    senha TEXT
-  )
-`);
-
 // Funções auxiliares
 export async function createUser(email: string, password: string) {
   return client.execute("INSERT INTO users (email, senha) VALUES (?, ?)", [
