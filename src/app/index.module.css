@@ -6,16 +6,16 @@
   height: 100vh;
   gap: 1em;
 }
-.form{
-  border: solid 2px rgba(80,80,80,0.5);
+.form {
+  border: solid 2px rgba(80, 80, 80, 0.5);
   padding: 1em;
 }
 .form > input {
-  border: 1px solid rgba(80,80,80,0.5);
+  border: 1px solid rgba(80, 80, 80, 0.5);
   border-radius: 0.6em;
   padding: 0.2em;
 }
 .form > button {
-  border: 1px solid rgba(80,80,80, 0.5);
-  background-color: rgba(20,20,20, 0.6);
+  border: 1px solid rgba(80, 80, 80, 0.5);
+  background-color: rgba(20, 20, 20, 0.6);
 }

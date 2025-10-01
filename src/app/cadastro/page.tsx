@@ -10,7 +10,7 @@ export default function Page() {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const username = formData.get("username") as string;
-    const res = await fetch(`${baseUrl}/api/auth/cadastro`, {
+    await fetch(`${baseUrl}/api/auth/cadastro`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -19,7 +19,6 @@ export default function Page() {
         username: username,
       }),
     });
-    return { sucess: true };
   }
   return (
     <div className={styles.centra}>
@@ -27,6 +26,7 @@ export default function Page() {
         action={handleSubmit}
         className={`${styles.form} rounded-xl flex flex-col gap-2`}
       >
+        <H1>Cadastro</H1>
         <input type="email" name="email" placeholder="Email..." />
         <input type="password" name="password" placeholder="Senha..." />
         <input type="text" name="username" placeholder="Nome..." />

@@ -30,7 +30,7 @@ export const authOptions: AuthOptions = {
 
         return {
           id: String(user.id),
-          nome: String(user.nome),
+          nome: String(user.username),
           email: String(user.email),
         };
       },
