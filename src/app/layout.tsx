@@ -3,6 +3,7 @@
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import Sidebar from "@/app/ui/components/sidebar/Sidebar";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistMono.variable} antialiased`}>
+        <Sidebar />
         <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
