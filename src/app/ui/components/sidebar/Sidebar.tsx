@@ -12,7 +12,9 @@ export default function Sidebar() {
       className={`${styles.sidebar} ${courierPrime.className} rounded-r-3xl text-2xl flex flex-col gap-1 items-center`}
     >
       <Link href="/login">Login</Link>
-      <Link href="/Cadastro">Cadastro</Link>
+      <Link href="/cadastro">Cadastro</Link>
+      <hr className="w-10/12" />
+      <Link href="/dashboard">Dashboard</Link>
     </div>
   );
 }
