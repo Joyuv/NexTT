@@ -1,10 +1,7 @@
-"use client";
-
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import Sidebar from "@/app/ui/components/sidebar/Sidebar";
-import { useState } from "react";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",

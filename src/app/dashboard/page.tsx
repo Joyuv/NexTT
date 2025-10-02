@@ -11,7 +11,8 @@ export default async function Page() {
   if (!session) {
     redirect("/login");
   }
-  const user = await getUserByEmail(String(session.user.email));
+
+  const user = await getUserByEmail(String(session.user?.email));
   return (
     <div>
       <div className={`${styles.centra}`}>
