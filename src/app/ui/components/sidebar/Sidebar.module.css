@@ -1,0 +1,15 @@
+.sidebar {
+  float: left;
+  height: 100vh;
+  width: fit-content;
+  background-color: rgba(20, 20, 20, 0.8);
+}
+
+.sidebar > a {
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.sidebar > a:hover {
+  background-color: rgba(100, 100, 100, 0.3);
+}
