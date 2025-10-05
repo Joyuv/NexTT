@@ -30,12 +30,27 @@ export const authOptions: AuthOptions = {
 
         return {
           id: String(user.id),
-          nome: String(user.username),
+          name: String(user.username),
           email: String(user.email),
         };
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.name = user.name;
+        token.email = user.email;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.name = token.name as string;
+      }
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);

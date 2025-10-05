@@ -1,7 +1,7 @@
 .sidebar {
   float: left;
   height: 100vh;
-  width: fit-content;
+  width: 11em;
   background-color: rgba(20, 20, 20, 0.8);
 }
 
@@ -12,4 +12,14 @@
 
 .sidebar > a:hover {
   background-color: rgba(100, 100, 100, 0.3);
+}
+
+.sidebar > button {
+  padding: 4px;
+  border-radius: 10px;
+}
+
+.sidebar > button:hover {
+  background-color: rgba(100, 100, 100, 0.3);
+  cursor: pointer;
 }
