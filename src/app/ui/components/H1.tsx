@@ -7,7 +7,7 @@ const courierPrime = Courier_Prime({
 export default function H1({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`${courierPrime.className} flex justify-center items-center text-4xl select-none`}
+      className={`${courierPrime.className} flex justify-center items-center text-3xl select-none`}
     >
       <p>{children}</p>
     </div>

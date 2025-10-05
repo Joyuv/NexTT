@@ -1,22 +1,45 @@
+"use client";
+
 import H1 from "@/app/ui/components/H1";
 import styles from "@/app/index.module.css";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getUserByEmail } from "@/lib/db";
+import { useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
+import Card from "@/app/ui/components/card/Card";
 
-export default async function Page() {
-  const session = await getServerSession(authOptions);
+export default function Page() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const { data: session } = useSession();
 
-  if (!session) {
-    redirect("/login");
-  }
+  useEffect(() => {
+    if (!session) {
+      redirect("/");
+    }
+    setEmail(String(session.user?.email));
+    setNome(String(session.user?.name));
+  }, [session]);
 
-  const user = await getUserByEmail(String(session.user?.email));
   return (
-    <div>
-      <div className={`${styles.centra}`}>
-        <H1>{String(user.username)}</H1>
+    <div className="w-full">
+      <div className={`${styles.dashboard} flex flex-col items-start gap-52`}>
+        <div className="flex flex-col items-start">
+          <H1>Usuario: {nome}</H1>
+          <H1>Email: {email}</H1>
+        </div>
+        <div className="flex flex-row flex-wrap items-center justify-center w-full gap-6">
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+          <Card titulo="teste" descricao="teste teste" />
+        </div>
       </div>
     </div>
   );

@@ -19,3 +19,8 @@
   border: 1px solid rgba(80, 80, 80, 0.5);
   background-color: rgba(20, 20, 20, 0.6);
 }
+
+.dashboard {
+  box-sizing: border-box;
+  padding: 1em;
+}
