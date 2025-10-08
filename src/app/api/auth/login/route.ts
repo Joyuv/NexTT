@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { getUserByEmail } from "@/lib/db";
+import { db } from "@/lib/db";
+import { users } from "@/db/schema";
+import { eq } from "drizzle-orm";
 
 export const POST = async (req: Request) => {
   const { email, senha } = await req.json();
 
-  const user = await getUserByEmail(email);
+  const [user] = await db.select().from(users).where(eq(users.email, email));
   if (!user) {
     return NextResponse.json(
       { error: "Usuário não encontrado" },
