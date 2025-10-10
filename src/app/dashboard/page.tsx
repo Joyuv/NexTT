@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Card from "@/app/ui/components/card/Card";
+import Link from "next/link";
+import Button from "@/app/ui/components/Button";
 
 export default function Page() {
   const [nome, setNome] = useState("");
@@ -20,6 +22,14 @@ export default function Page() {
     setNome(String(session.user?.name));
   }, [session]);
 
+  type campaigns = {
+    id: number;
+    name: string;
+    description: string;
+    owner_id: number;
+  };
+  const campaigns: campaigns[] = [];
+
   return (
     <div className="w-full">
       <div className={`${styles.dashboard} flex flex-col items-start gap-52`}>
@@ -28,17 +38,12 @@ export default function Page() {
           <H1>Email: {email}</H1>
         </div>
         <div className="flex flex-row flex-wrap items-center justify-center w-full gap-6">
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
-          <Card titulo="teste" descricao="teste teste" />
+          <Link href="/campanha/adicionar">
+            <Button>Adicionar nova campanha</Button>
+          </Link>
+          {campaigns.map((campaign) => (
+            <Card titulo={campaign.name} descricao={campaign.description} />
+          ))}
         </div>
       </div>
     </div>
