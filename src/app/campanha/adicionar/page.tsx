@@ -9,11 +9,11 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
-  const session = await getServerSession(authOptions)
-  if(!session){
-    return redirect('/')
-  } 
-  const nameowner = session.user?.name
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return redirect("/");
+  }
+  const nameowner = session.user?.name;
   async function handleSubmit(formData: FormData) {
     "use server";
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
@@ -28,7 +28,7 @@ export default async function Page() {
         nameowner: nameowner,
       }),
     });
-  } 
+  }
 
   return (
     <div className={styles.centra}>
